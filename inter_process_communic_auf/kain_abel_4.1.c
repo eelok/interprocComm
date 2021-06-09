@@ -19,11 +19,11 @@ int main(){
 
     if ((firstChild_id = fork()) == 0) { //First Child Kain
         firstChild_id = getpid();
-        char instruction[] = "kill";
+        char kill_instruction[] = "kill";
         char notKill[] = "not kill";
         for(int i = 0; i <= 6; i++){
             if(i == 6){
-                write(fd[1], instruction, strlen(instruction));
+                write(fd[1], kill_instruction, strlen(kill_instruction));
             } else {
                 write(fd[1], notKill, strlen(notKill));
                 printf("Kain ID: %d, its Parent ID: %d\n", firstChild_id, parent_id);
