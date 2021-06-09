@@ -21,13 +21,12 @@ int main(){
         firstChild_id = getpid();
         char instruction[] = "kill";
         char notKill[] = "not kill";
-        printf("From Kain: PID: %d\n", firstChild_id);
         for(int i = 0; i <= 6; i++){
             if(i == 6){
                 write(fd[1], instruction, strlen(instruction));
             } else {
                 write(fd[1], notKill, strlen(notKill));
-                printf("Kain ID: %d, its Parent ID: %d\n", getpid(), parent_id);
+                printf("Kain ID: %d, its Parent ID: %d\n", firstChild_id, parent_id);
             }
             close(fd[0]);
             sleep(1);
