@@ -4,7 +4,7 @@
 #include <sys/types.h>
 #include <stdlib.h>
 #include <string.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 int main(){
     int parent_id;
@@ -20,11 +20,13 @@ int main(){
     if ((firstChild_id = fork()) == 0) { //First Child Kain
         firstChild_id = getpid();
         char instruction[] = "kill";
+        char notKill[] = "not kill";
         printf("From Kain: PID: %d\n", firstChild_id);
         for(int i = 0; i <= 6; i++){
             if(i == 6){
                 write(fd[1], instruction, strlen(instruction));
-            } else{
+            } else {
+                write(fd[1], notKill, strlen(notKill));
                 printf("Kain ID: %d, its Parent ID: %d\n", getpid(), parent_id);
             }
             close(fd[0]);
@@ -38,7 +40,7 @@ int main(){
                 char buffer[200] = "";
                 char killMessage[] = "kill";
                 int read_byte = read(fd[0], buffer, 200);
-                
+                printf("Abel PID: %d, its parent: %d\n", secondChild_id, getppid());
                 int res = strcmp(buffer, killMessage); 
                 if(res == 0) {                    
                     printf(">>>>>>Kain killed Abel<<<<<<<<<\n");
